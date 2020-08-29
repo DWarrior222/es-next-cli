@@ -14,5 +14,9 @@ app.use(
   })
 );
 
+app.use(
+  require("webpack-hot-middleware")(compiler)
+);
+
 
 app.listen(8080, () => console.log('Example app listening on port 8080!'))
