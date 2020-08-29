@@ -1,4 +1,3 @@
-
 console.log(Proxy);
 
 Promise.resolve(1)

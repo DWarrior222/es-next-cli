@@ -4,8 +4,8 @@
   "description": "最新的es语法脚手架",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --config ./webpack.config.js"
+    "test": "webpack --config ./webpack.config.js",
+    "dev": "webpack --config ./server.js"
   },
   "author": "guanshuaijie",
   "license": "ISC",
