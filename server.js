@@ -10,7 +10,8 @@ const app = express();
 app.use(
   middleware(compiler, {
     // webpack-dev-middleware options
-    publicPath: webpackOptions.output.publicPath
+    publicPath: webpackOptions.output.publicPath,
+    stats: 'errors-warnings'
   })
 );
 
