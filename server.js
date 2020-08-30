@@ -1,23 +1,28 @@
+const config = require('./config');
 const webpackOptions = require('./webpack.config');
 const webpack = require('webpack')
-const middleware = require('webpack-dev-middleware');
-
+const open = require('open');
 
 const compiler = webpack(webpackOptions);
 const express = require('express');
 const app = express();
 
-app.use(
-  middleware(compiler, {
-    // webpack-dev-middleware options
-    publicPath: webpackOptions.output.publicPath,
-    stats: 'errors-warnings'
-  })
-);
+const devMiddleware = require('webpack-dev-middleware')(compiler, {
+  // webpack-dev-middleware options
+  publicPath: webpackOptions.output.publicPath,
+  stats: 'errors-warnings'
+})
 
-app.use(
-  require("webpack-hot-middleware")(compiler)
-);
+devMiddleware.waitUntilValid(() => {
+  const url = `http://${config.HOST}:${config.PORT}`
+  console.log('listening at ', url);
+  open(url)
+})
 
+app.use(devMiddleware);
 
-app.listen(8080, () => console.log('Example app listening on port 8080!'))
+const hotMiddleware = require("webpack-hot-middleware")(compiler)
+
+app.use(hotMiddleware);
+
+app.listen(config.PORT, () => console.log(`Example app listening on port ${config.PORT}!`))
