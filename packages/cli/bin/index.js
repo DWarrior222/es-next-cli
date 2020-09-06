@@ -6,7 +6,7 @@ const fs = require('fs');
 const package = require('../package.json');
 const version = package.version;
 
-async function deleteall (path) {
+function deleteall (path) {
 	let files = [];
 	if (fs.existsSync(path)) {
 		files = fs.readdirSync(path);
