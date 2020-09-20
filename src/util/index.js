@@ -7,7 +7,7 @@ export function getRenderList(queryList = [], jsLevelList = []) {
   const fileRenderList = getRenderPathList({ list: curFile, deep, type: 'file' })
   const floderRenderList = getRenderPathList({ list: curFloder, deep, type: 'floder' })
   const backRenderList = getBackUrl(curFileList(queryList, jsLevelList))
-  return uniqueList([...fileRenderList, ...floderRenderList, ...backRenderList])
+  return uniqueList([...backRenderList, ...fileRenderList, ...floderRenderList])
 }
 
 export function uniqueList(list = []) {
