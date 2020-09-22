@@ -4,12 +4,9 @@ import {
   isJsFile
 } from './util/index'
 
-
 const search = location.search
 const queryList = /\?path=.+/.test(search) ? search.replace('?path=', '').split('/') : []
-const filepath = queryList.length ? queryList.reduce((pre, cur) => {
-  return `${pre}/${cur}`
-}) : 'main'
+const filepath = queryList.length ? queryList.reduce((pre, cur) => `${pre}/${cur}`) : 'main'
 
 if (!queryList.length) {
   console.log(`import ./${filepath}.js`);
