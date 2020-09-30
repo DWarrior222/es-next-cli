@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
+function deleteDir (path) {
+  if (!fs.statSync(path)) return
+  fs.rmdirSync(path, { recursive: true }) // recursive 为 true 表示递归删除
+}
+
 function deleteall (path) {
 	let files = [];
 	if (fs.existsSync(path)) {
@@ -29,7 +34,17 @@ function move (curPath, pathname) {
 	}
 }
 
+
+function moveCur (curPath) {
+	const dirList = fs.readdirSync(curPath)
+	dirList.forEach(path => {
+		fs.renameSync(curPath + path, `${process.cwd()}/${path}`)
+	})
+}
+
 module.exports = {
   deleteall,
-  move
+	move,
+	moveCur,
+	deleteDir
 }
