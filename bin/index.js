@@ -15,9 +15,9 @@ program.command('init [pathname]').action((pathname) => {
 			console.log('exec err: ' + err);
 			return;
 		}
-		const curPath = process.cwd() + '/es-next-cli/';
+		const curPath = process.cwd() + '/es-next/';
 		deleteDir(curPath + '.git');
-		if (/(\/)$/g.test(pathname)) pathname += 'es-next-cli/'
+		if (/(\/)$/g.test(pathname)) pathname += 'es-next/'
 		if (pathname === '.') moveCur(curPath)
 		else if (pathname) move(curPath, pathname);
 		console.log('clone success');
