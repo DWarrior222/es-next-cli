@@ -10,7 +10,7 @@ program.version(version, '-v, --version');
 
 program.command('init [pathname]').action((pathname) => {
 	console.log('clone template ...');
-	childProcess.exec('git clone https://github.com/DWarrior222/es-next-cli.git', err => {
+	childProcess.exec('git clone https://github.com/DWarrior222/es-next.git', err => {
 		if (err !== null) {
 			console.log('exec err: ' + err);
 			return;
