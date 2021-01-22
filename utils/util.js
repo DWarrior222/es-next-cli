@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const request = require('request');
 
 function deleteDir (path) {
   if (!fs.statSync(path)) return
@@ -34,6 +35,15 @@ function move (curPath, pathname) {
 	}
 }
 
+function downloadFile (sourcrFile, newFile) {
+	request.head(sourcrFile, (err, res, body) => {
+		if (err) {
+			console.log(err);
+		}
+	});
+	console.log(newFile);
+	request(sourcrFile).pipe(fs.createWriteStream(newFile));
+}
 
 function moveCur (curPath) {
 	const dirList = fs.readdirSync(curPath)
@@ -46,5 +56,6 @@ module.exports = {
   deleteall,
 	move,
 	moveCur,
-	deleteDir
+	deleteDir,
+	downloadFile
 }

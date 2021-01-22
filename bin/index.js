@@ -10,6 +10,14 @@ const path = require('path');
 
 program.version(version, '-v, --version');
 
+program.command('install [pathname]').action(async (pathname) => {
+	if (pathname !== 'docker') {
+		console.log('没有这个命令');
+		return;
+	}
+	require(`./${pathname}.js`)
+});
+
 program.command('init [pathname]').action(async (pathname) => {
 	const isSaveExample = await questAnswer({ question: '是否保留示例？Y/N', defVal: 'Y' }) === 'Y';
 	console.log('clone template ...');
